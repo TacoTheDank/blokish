@@ -72,7 +72,7 @@ public class GameView extends FrameLayout {
     public boolean thinking = false;
     public boolean singleline = false;
     public BusyIndicator indicator;
-    public PieceUI lasts[] = new PieceUI[4];
+    public PieceUI[] lasts = new PieceUI[4];
     public float downX;
     public float downY;
     int secondLineOffset = 0;
@@ -125,7 +125,7 @@ public class GameView extends FrameLayout {
         for (int color = 0; color < 4; color++) {
             dots[color] = getDrawable(icons[color]);
             dots[color].setAlpha(191);
-            tabs[color] = (TextView) findViewById(labels[color]);
+            tabs[color] = findViewById(labels[color]);
             // let put the listener on the parent view group
             ViewGroup tab = (ViewGroup) tabs[color].getParent();
             if (tab != null) {

@@ -100,10 +100,10 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
         game = new GameView(UI.this);
 //		setContentView(game);
         setContentView(R.layout.activity_main);
-        FrameLayout container = (FrameLayout) findViewById(R.id.container);
+        FrameLayout container = findViewById(R.id.container);
         container.addView(game);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        drawer = findViewById(R.id.drawer_layout);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override

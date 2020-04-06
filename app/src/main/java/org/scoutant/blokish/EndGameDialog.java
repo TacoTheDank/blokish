@@ -12,7 +12,7 @@ public class EndGameDialog extends Dialog {
         setContentView(R.layout.endgame);
         // Cf layout issue http://groups.google.com/group/android-developers/browse_thread/thread/f0bb813f643604ec?pli=1
         getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        TextView tv = (TextView) findViewById(R.id.message);
+        TextView tv = findViewById(R.id.message);
         tv.setText(message);
         View b = findViewById(R.id.ok);
         b.setOnClickListener(new android.view.View.OnClickListener() {

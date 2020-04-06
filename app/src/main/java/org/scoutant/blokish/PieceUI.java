@@ -409,8 +409,7 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
         int r = radius / size;
         if (Math.abs(downX - r) <= 1 && Math.abs(downY - 1) <= 1) return true;
         if (Math.abs(downX - 1) <= 1 && Math.abs(downY - r) <= 1) return true;
-        if (Math.abs(downX - 2 * r + 1) <= 1 && Math.abs(downY - r) <= 1) return true;
-        return false;
+        return Math.abs(downX - 2 * r + 1) <= 1 && Math.abs(downY - r) <= 1;
     }
 
     @Override
