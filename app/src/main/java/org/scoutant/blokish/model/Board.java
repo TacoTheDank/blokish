@@ -48,7 +48,7 @@ public class Board {
     public static final String tag = "sc";
     public int color;
     public int size = 20;
-    public List<Piece> pieces = new ArrayList<Piece>();
+    public List<Piece> pieces = new ArrayList<>();
     public int score;
     public boolean over = false;
     int nbPieces;
@@ -106,7 +106,12 @@ public class Board {
     public void add(Piece piece, int i, int j) {
         for (Square s : piece.squares(this.color)) {
             // TODO refactor without try / catch
-//			try { ij[i+s.i][j+s.j] = s.value; } catch (Exception e) {}
+/*
+            try {
+                ij[i + s.i][j + s.j] = s.value;
+            } catch (Exception e) {
+            }
+*/
             int I = i + s.i;
             int J = j + s.j;
             if (I >= 0 && I < size && J >= 0 && J < size) ij[I][J] = s.value;
@@ -118,7 +123,7 @@ public class Board {
             for (Square seed : piece.seeds()) {
                 try {
                     if (ij[i + seed.i][j + seed.j] == 0) ij[i + seed.i][j + seed.j] = 1;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -133,13 +138,13 @@ public class Board {
         for (Square s : piece.squares(this.color)) {
             try {
                 ab[i + s.i][j + s.j] = s.value;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         for (Square seed : piece.seeds()) {
             try {
                 if (ab[i + seed.i][j + seed.j] == 0) ab[i + seed.i][j + seed.j] = 1;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         for (int b = 0; b < 20; b++) for (int a = 0; a < 20; a++) if (ab[a][b] == 1) result++;
@@ -176,17 +181,17 @@ public class Board {
     }
 
     String toString(int jmax) {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int j = 0; j < jmax; j++) {
             for (int i = 0; i < size; i++) {
-                str += ij[i][j] + (i == size - 1 ? "\n" : " | ");
+                str.append(ij[i][j]).append(i == size - 1 ? "\n" : " | ");
             }
         }
-        return str;
+        return str.toString();
     }
 
     public List<Square> seeds() {
-        List<Square> list = new ArrayList<Square>();
+        List<Square> list = new ArrayList<>();
         for (int j = 0; j < size; j++) {
             for (int i = 0; i < size; i++) {
                 if (ij[i][j] == 1) list.add(new Square(i, j));

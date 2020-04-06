@@ -22,11 +22,11 @@ import java.util.List;
 
 public class Game {
     public static final String tag = "sc";
-    public List<Board> boards = new ArrayList<Board>();
+    public List<Board> boards = new ArrayList<>();
     public int size = 20;
-    //	public String[] colors = { "Red", "Green", "Blue", "Orange" };
+    //public String[] colors = {"Red", "Green", "Blue", "Orange"};
     public int[] colors = {R.string.Red, R.string.Green, R.string.Blue, R.string.Orange};
-    public List<Move> moves = new ArrayList<Move>();
+    public List<Move> moves = new ArrayList<>();
     private int[][] ab = new int[20][20];
 
     public Game() {
@@ -74,7 +74,7 @@ public class Game {
             p.reset(piece);
             move.piece = p;
             boolean status = play(move);
-            if (status == false) return false;
+            if (!status) return false;
         }
         return true;
     }
@@ -110,16 +110,15 @@ public class Game {
     }
 
     public String toString() {
-        String msg = "# moves : " + moves.size();
+        StringBuilder msg = new StringBuilder("# moves : " + moves.size());
         for (Move move : moves) {
-            msg += "\n" + Move.serialize(move);
+            msg.append("\n").append(Move.serialize(move));
         }
-        return msg;
+        return msg.toString();
     }
 
     public List<Move> deserialize(String msg) {
-        List<Move> list = new ArrayList<Move>();
-        return list;
+        return new ArrayList<>();
     }
 
     /**
@@ -132,27 +131,29 @@ public class Game {
         for (Square s : board.seeds()) {
             try {
                 ab[s.i][s.j] = 1;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         for (Square s : piece.squares()) {
             try {
                 ab[i + s.i][j + s.j] = 0;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         for (int b = 0; b < 20; b++) for (int a = 0; a < 20; a++) if (ab[a][b] == 1) result++;
-//		Log.d(tag, "scoreEnemySeedsIfAdding : " + result + ". color : " + board.color);
+//        Log.d(tag, "scoreEnemySeedsIfAdding : " + result + ". color : " + board.color);
         return result;
     }
 
     int scoreEnemySeedsIfAdding(int color, Piece piece, int i, int j) {
         int result = 0;
-//		for (int c=0; c<4; c++) {
-//			if (c!=color) {
-//				result += scoreEnemySeedsIfAdding( boards.get(c), piece, i, j );
-//			}
-//		}
+/*
+        for (int c = 0; c < 4; c++) {
+            if (c != color) {
+                result += scoreEnemySeedsIfAdding(boards.get(c), piece, i, j);
+            }
+        }
+*/
         // try consider only Red as enemy, for machine to compete with human!
         result += scoreEnemySeedsIfAdding(boards.get(0), piece, i, j);
         return result;

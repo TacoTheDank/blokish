@@ -51,12 +51,12 @@ public class Piece {
      * @return a represention of the piece, like this sample : 2:I3:0,-1:0,0:0,1
      */
     static String serialize(Piece piece) {
-        String msg = "" + piece.color;
-        msg += ":" + piece.type;
+        StringBuilder msg = new StringBuilder("" + piece.color);
+        msg.append(":").append(piece.type);
         for (Square s : piece.squares()) {
-            msg += ":" + s.i + "," + s.j;
+            msg.append(":").append(s.i).append(",").append(s.j);
         }
-        return msg;
+        return msg.toString();
     }
 
     public void reset() {
@@ -126,7 +126,7 @@ public class Piece {
 
     }
 
-    public Piece rotate(int dir) {
+    public void rotate(int dir) {
         for (int y = -h; y < -h + size; y++) {
             for (int x = -h; x < -h + size; x++) {
                 if (odd) set(x, y, (dir > 0 ? get(y, -x) : get(-y, x)));
@@ -138,7 +138,6 @@ public class Piece {
         }
         r = (r + 1) % rotations;
         toggle();
-        return this;
     }
 
     public Piece flip() {
@@ -154,19 +153,19 @@ public class Piece {
     }
 
     public String toLabel() {
-//		return "[" + type + ", " + r + ", " +f + " ]";
+//        return "[" + type + ", " + r + ", " + f + " ]";
         return type;
     }
 
     @Override
     public String toString() {
-        String str = type + "\n";
+        StringBuilder str = new StringBuilder(type + "\n");
         for (int y = -h; y < -h + size; y++) {
             for (int x = -h; x < -h + size; x++) {
-                str += get(x, y) + (x == -h + size - 1 ? "\n" : " | ");
+                str.append(get(x, y)).append(x == -h + size - 1 ? "\n" : " | ");
             }
         }
-        return str;
+        return str.toString();
 
     }
 
@@ -196,7 +195,7 @@ public class Piece {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         Piece other = (Piece) obj;
-        if (other.type != this.type) return false;
+        if (!other.type.equals(this.type)) return false;
         for (int y = -h; y < -h + size; y++) {
             for (int x = -h; x < -h + size; x++) {
                 if (this.get(x, y) != other.get(x, y)) return false;
@@ -206,7 +205,7 @@ public class Piece {
     }
 
     public List<Square> squares() {
-        List<Square> list = new ArrayList<Square>();
+        List<Square> list = new ArrayList<>();
         for (int y = -h; y < -h + size; y++) {
             for (int x = -h; x < -h + size; x++) {
                 if (isValue(x, y)) list.add(new Square(x, y, 3));
@@ -216,7 +215,7 @@ public class Piece {
     }
 
     List<Square> squares(int color) {
-        List<Square> list = new ArrayList<Square>();
+        List<Square> list = new ArrayList<>();
         if (color != this.color) {
             return squares();
         } else {
@@ -231,7 +230,7 @@ public class Piece {
     }
 
     public List<Square> seeds() {
-        List<Square> list = new ArrayList<Square>();
+        List<Square> list = new ArrayList<>();
         for (int y = -h - 1; y < -h + size + 1; y++) {
             for (int x = -h - 1; x < -h + size + 1; x++) {
                 if (crosses(x, y)) list.add(new Square(x, y));

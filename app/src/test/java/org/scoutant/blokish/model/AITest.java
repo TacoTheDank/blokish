@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -25,20 +26,20 @@ public class AITest {
     private boolean valid = false;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         game = new Game();
         board = game.boards.get(color);
         ai = new AI(game);
         pieces = board.pieces;
         pieces.clear();
 
-//    L4 = board.findPieceByType("L4");
-//		P5 = board.findPieceByType("P5");
-//		I3 = board.findPieceByType("I3");
+//        L4 = board.findPieceByType("L4");
+//        P5 = board.findPieceByType("P5");
+//        I3 = board.findPieceByType("I3");
     }
 
     @Test
@@ -51,27 +52,27 @@ public class AITest {
     public void testThinkWithL4() {
         pieces.add(L4);
         List<Move> moves = ai.thinkUpToNMoves(0, 0);
-        assertTrue(moves.size() == 6);
+        assertEquals(6, moves.size());
     }
 
     @Test
     public void testThinkWithP5() {
         pieces.add(P5);
         List<Move> moves = ai.thinkUpToNMoves(0, 3);
-        assertTrue(moves.size() == 6);
+        assertEquals(6, moves.size());
     }
 
     @Test
     public void testThinkWithP5AndL4() {
         Move move = new Move(P5, 0, 1);
         game.play(move);
-        assertTrue(board.seeds().size() == 2);
+        assertEquals(2, board.seeds().size());
         pieces.add(L4);
         List<Move> moves = ai.thinkUpToNMoves(0, 3);
-        assertTrue(moves.size() == 17);
+        assertEquals(17, moves.size());
         game.play(new Move(L4, 1, 4));
         Log.d(tag, "" + board);
-        assertTrue(board.seeds().size() == 4);
+        assertEquals(4, board.seeds().size());
     }
 
     @Test
@@ -80,14 +81,14 @@ public class AITest {
         game.play(new Move(L4, 1, 4));
         pieces.add(I3);
         List<Move> moves = ai.thinkUpToNMoves(0, 3);
-        assertTrue(board.seeds().size() == 4);
+        assertEquals(4, board.seeds().size());
         Log.d(tag, "#moves : " + moves.size());
-        assertTrue(moves.size() == 6);
+        assertEquals(6, moves.size());
         I3.rotate(1);
         valid = game.play(new Move(I3, 4, 6));
         assertTrue(valid);
         Log.d(tag, "" + board);
-        assertTrue(board.seeds().size() == 6);
+        assertEquals(6, board.seeds().size());
     }
 
     @Test
@@ -98,11 +99,11 @@ public class AITest {
         I3.rotate(1);
         valid = game.play(new Move(I3, 4, 6));
         assertTrue(valid);
-        assertTrue(board.seeds().size() == 6);
+        assertEquals(6, board.seeds().size());
         pieces.add(P5);
         List<Move> moves = ai.thinkUpToNMoves(0, 3);
         System.out.println("move : " + moves.size());
-        assertTrue(moves.size() == 37);
+        assertEquals(37, moves.size());
     }
 
 }

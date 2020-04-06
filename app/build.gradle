@@ -11,7 +11,9 @@ android {
         targetSdkVersion 29 // Android 10
         versionCode 22
         versionName "3.4"
+
         project.ext.set("archivesBaseName", "blokish-" + defaultConfig.versionName)
+        resValue "string", "app_name", "Blokish"
     }
 
     signingConfigs {

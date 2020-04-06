@@ -52,7 +52,6 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
     public static int[] icons = {R.drawable.red, R.drawable.green, R.drawable.blue, R.drawable.orange};
     public static int[] icons_bold = {R.drawable.red_bold, R.drawable.green_bold, R.drawable.blue_bold, R.drawable.orange_bold};
     private static int grey = 0x99999999;
-    private static int green = 0x3333ee33;
     public Piece piece;
     public int i0;
     public int j0;
@@ -240,6 +239,7 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
             d.draw(canvas);
 
             // below, the 4 handles
+            int green = 0x3333ee33;
             paint.setColor(isOk ? green : grey);
             canvas.drawCircle(radius, size, size, paint);
             canvas.drawCircle(radius, 2 * radius - size, size, paint);
@@ -257,12 +257,12 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
         this.canvas = canvas;
     }
 
-    private PieceUI add(int i, int j) {
+    private void add(int i, int j) {
         GameView game = (GameView) this.getParent();
         if (game.lasts[piece.color] == this && this.j <= 20) {
             square_bold.setBounds(new Rect((i + PADDING + oo) * size, (j + PADDING + oo) * size, (i + PADDING + oo + 1) * size + 1, (j + PADDING + oo + 1) * size + 1));
             square_bold.draw(canvas);
-            return this;
+            return;
         }
         if (this.j <= 20) {
             square.setBounds(new Rect((i + PADDING + oo) * size + 1, (j + PADDING + oo) * size + 1, (i + PADDING + oo + 1) * size, (j + PADDING + oo + 1) * size));
@@ -270,7 +270,6 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
             square.setBounds(new Rect((i + oo) * size + 1, (j + oo) * size + 1, (i + oo + 1) * size, (j + oo + 1) * size));
         }
         square.draw(canvas);
-        return this;
     }
 
     public boolean onLongClick(View v) {
@@ -312,7 +311,7 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
             }
             int dX = Float.valueOf(event.getRawX() - rawX).intValue();
             int dY = Float.valueOf(event.getRawY() - rawY).intValue();
-            if (movable == false || -dY < Math.abs(dX)) {
+            if (!movable || -dY < Math.abs(dX)) {
                 game.doTouch(event);
                 return false;
             }
@@ -377,7 +376,7 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
                 boolean okState = game.game.valid(piece, i, j) && !game.thinking;
                 game.buttons.setOkState(okState);
                 setOkState(okState);
-//        if (okState && vibrator!=null) vibrator.vibrate(20);
+//                if (okState && vibrator != null) vibrator.vibrate(20);
             }
         }
         invalidate();
@@ -431,7 +430,7 @@ public class PieceUI extends FrameLayout implements OnTouchListener, OnLongClick
         public void onClick(View v) {
             long t = Calendar.getInstance().getTimeInMillis();
             long elapse = t - time;
-//        Log.d("click", "elapse : " + elapse);
+//            Log.d("click", "elapse : " + elapse);
             if (elapse < 300) {
                 Log.d("click", "TAP");
                 if (ok != null) ok.callOnClick();

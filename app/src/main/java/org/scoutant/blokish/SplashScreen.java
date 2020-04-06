@@ -34,7 +34,7 @@ public class SplashScreen extends Activity {
             if (reader.readLine() != null && reader.readLine() != null) {
                 delai = DELAY / 3;
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         handler.sendEmptyMessageDelayed(0, delai);
     }

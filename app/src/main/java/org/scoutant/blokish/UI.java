@@ -15,7 +15,6 @@ package org.scoutant.blokish;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -98,7 +97,7 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
 
     private void newgame() {
         game = new GameView(UI.this);
-//		setContentView(game);
+//        setContentView(game);
         setContentView(R.layout.activity_main);
         FrameLayout container = findViewById(R.id.container);
         container.addView(game);
@@ -188,23 +187,12 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
                     new AlertDialog.Builder(this)
                             .setMessage(rs.getString(R.string.new_game) + "?")
                             .setCancelable(false)
-                            .setPositiveButton(" ", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    newgame();
-                                }
-                            })
-                            .setNegativeButton(" ", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            })
+                            .setPositiveButton(" ", (dialog1, which) -> newgame())
+                            .setNegativeButton(" ", (dialog12, id) -> dialog12.cancel())
                             .create();
-            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialogInterface) {
-                    setButtonImage(dialog, AlertDialog.BUTTON_POSITIVE, R.drawable.checkmark);
-                    setButtonImage(dialog, AlertDialog.BUTTON_NEGATIVE, R.drawable.cancel);
-                }
+            dialog.setOnShowListener(dialogInterface -> {
+                setButtonImage(dialog, AlertDialog.BUTTON_POSITIVE, R.drawable.checkmark);
+                setButtonImage(dialog, AlertDialog.BUTTON_NEGATIVE, R.drawable.cancel);
             });
             dialog.show();
         }
@@ -231,51 +219,37 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
         if (id == R.id.item_help) startActivity(new Intent(this, Help.class));
         if (id == R.id.item_preferences) startActivity(new Intent(this, Settings.class));
         if (id == R.id.item_back) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    List<Move> moves = game.game.moves;
-                    int length = moves.size();
-                    if (length >= 4) {
-                        length -= 4;
-                    }
-                    moves = moves.subList(0, length);
-                    newgame();
-                    Log.i(tag, "replay # moves : " + length);
-                    game.replay(moves);
+            new Handler().postDelayed(() -> {
+                List<Move> moves = game.game.moves;
+                int length = moves.size();
+                if (length >= 4) {
+                    length -= 4;
                 }
+                moves = moves.subList(0, length);
+                newgame();
+                Log.i(tag, "replay # moves : " + length);
+                game.replay(moves);
             }, 500);
         }
         if (id == R.id.item_new) {
 
             final IconDialog dialog = new IconDialog(this, R.string.new_game);
-            dialog.setListener(new IconDialog.OnClick() {
-                @Override
-                public void onClick() {
-                    newgame();
-                }
-            });
+            dialog.setListener(this::newgame);
             dialog.show();
 
         }
         if (id == R.id.item_flip) {
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    final PieceUI piece = game.selected;
-                    if (piece != null) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                piece.flip();
-                                boolean okState = game.game.valid(piece.piece, piece.i, piece.j);
-                                piece.setOkState(okState);
-                                game.buttons.setOkState(okState);
-                                game.invalidate();
-                            }
-                        });
-                    }
+            new Handler().postDelayed(() -> {
+                final PieceUI piece = game.selected;
+                if (piece != null) {
+                    runOnUiThread(() -> {
+                        piece.flip();
+                        boolean okState = game.game.valid(piece.piece, piece.i, piece.j);
+                        piece.setOkState(okState);
+                        game.buttons.setOkState(okState);
+                        game.invalidate();
+                    });
                 }
             }, 500);
         }
@@ -292,7 +266,7 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
         Drawable drawable = getResources().getDrawable(id);
         drawable.setBounds(drawable.getIntrinsicWidth() / 4, 0, drawable.getIntrinsicWidth() * 3 / 4, drawable.getIntrinsicHeight() / 2);
         button.setCompoundDrawables(drawable, null, null, null);
-//		button.setBackgroundColor(Color.TRANSPARENT);
+//        button.setBackgroundColor(Color.TRANSPARENT);
     }
 
     /**
@@ -305,12 +279,12 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
 
     private int findRequestedLevel() {
         String level = prefs.getString("aiLevel", "0");
-        return Integer.valueOf(level);
+        return Integer.parseInt(level);
     }
 
     private int findLevel() {
         String level = prefs.getString("aiLevel", "0");
-        int l = Integer.valueOf(level);
+        int l = Integer.parseInt(level);
         if (l < 0 || l > 3) l = 1;
         return Math.min(l, game.ai.adaptedLevel);
     }
@@ -325,7 +299,7 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
             return;
         }
 
-        if (back_pressed == true) {
+        if (back_pressed) {
             if (toast != null) toast.cancel();
             super.onBackPressed();
             return;
@@ -371,26 +345,26 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
      * sources a list of representations like this sample : 18|16|2|I3|0,-1|0,0|0,1
      */
     private void source(InputStream is) {
-        List<Move> list = new ArrayList<Move>();
+        List<Move> list = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             reader.readLine(); // first line give the # of moves...
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(":");
-                int i = Integer.valueOf(data[0]);
-                int j = Integer.valueOf(data[1]);
-                int color = Integer.valueOf(data[2]);
+                int i = Integer.parseInt(data[0]);
+                int j = Integer.parseInt(data[1]);
+                int color = Integer.parseInt(data[2]);
                 Piece piece = game.game.boards.get(color).findPieceByType(data[3]);
                 piece.reset();
                 for (int q = 4; q < data.length; q++) {
                     String[] position = data[q].split(",");
-                    int x = Integer.valueOf(position[0]);
-                    int y = Integer.valueOf(position[1]);
+                    int x = Integer.parseInt(position[0]);
+                    int y = Integer.parseInt(position[1]);
                     piece.add(new Square(x, y));
                 }
                 Move move = new Move(piece, i, j);
-//				Log.d(tag, "created move : " + move);
+//                Log.d(tag, "created move : " + move);
                 list.add(move);
             }
             newgame();
@@ -405,7 +379,7 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
     protected void onStop() {
         if (task != null) {
             task.cancel(true);
-            Log.d(tag, "leaving AI, as activity is brough to background");
+            Log.d(tag, "leaving AI, as activity is brought to background");
         }
         saveToMovesFile();
         super.onStop();
@@ -460,12 +434,12 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
                 if (findRequestedLevel() < (4 - 1))
                     message += "\n" + rs.getString(R.string.try_next);
             } else {
-//				message += "Player " + game.game.colors[winner] + " wins with score : " + score;
+//                message += "Player " + game.game.colors[winner] + " wins with score : " + score;
                 message += rs.getString(game.game.colors[winner]);
                 message += " " + rs.getString(R.string.wins_with_score) + " : ";
                 message += score;
             }
-            new EndGameDialog(UI.this, redWins, message, findRequestedLevel() + 1, score).show();
+            new EndGameDialog(UI.this, redWins, message, findRequestedLevel() + 1).show();
         }
     }
 
@@ -484,21 +458,15 @@ public class UI extends AppCompatActivity implements NavigationView.OnNavigation
                         new AlertDialog.Builder(UI.this)
                                 .setMessage(R.string.red_ko)
                                 .setCancelable(false)
-                                .setPositiveButton(" ", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        game.redOver = true;
-                                        game.game.boards.get(0).over = true;
-                                        Log.d(tag, "ok!");
-                                        think(1);
-                                    }
+                                .setPositiveButton(" ", (dialog1, which) -> {
+                                    game.redOver = true;
+                                    game.game.boards.get(0).over = true;
+                                    Log.d(tag, "ok!");
+                                    think(1);
                                 })
                                 .create();
-                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialogInterface) {
-                        setButtonImage(dialog, AlertDialog.BUTTON_POSITIVE, R.drawable.checkmark);
-                    }
-                });
+                dialog.setOnShowListener(dialogInterface ->
+                        setButtonImage(dialog, AlertDialog.BUTTON_POSITIVE, R.drawable.checkmark));
                 dialog.show();
             }
         }

@@ -52,7 +52,6 @@ import java.util.List;
 public class GameView extends FrameLayout {
     public static int[] icons = {R.drawable.bol_rood, R.drawable.bol_groen, R.drawable.bol_blauw, R.drawable.bullet_ball_glass_yellow};
     public static int[] labels = {R.id.red, R.id.green, R.id.blue, R.id.orange};
-    private static String tag = "activity";
     private final Resources rs;
     public int size;
     public ButtonsView buttons;
@@ -88,7 +87,7 @@ public class GameView extends FrameLayout {
         setWillNotDraw(false);
         setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, Gravity.TOP));
         paint.setStrokeWidth(1.3f);
-        paint.setColor(getColor(R.color.white));
+        paint.setColor(getColor());
 
         Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         Point pointSize = new Point();
@@ -99,10 +98,11 @@ public class GameView extends FrameLayout {
         setBackgroundColor(Color.BLACK);
 
         size = width / 20;
+        String tag = "activity";
         Log.d(tag, "size " + size + ", height/size : " + height / size);
 
         if (height / 32 < width / 20) singleline = true;
-        if (singleline == true && height >= size * 29) singleLineOffset = 1;
+        if (singleline && height >= size * 29) singleLineOffset = 1;
         if (height >= size * 35) secondLineOffset = 1;
 
         buttons = new ButtonsView(context);
@@ -111,7 +111,7 @@ public class GameView extends FrameLayout {
         for (Board board : game.boards) {
             int i = 2;
             for (Piece piece : board.pieces) {
-//				addView( new PieceUI(context, piece, i, 20+2) );
+//                addView(new PieceUI(context, piece, i, 20 + 2));
                 addView(new PieceUI(context, piece, i, 20 + 2, buttons.ok));
                 i += 4;
             }
@@ -140,8 +140,8 @@ public class GameView extends FrameLayout {
         indicator = new BusyIndicator(context, iView);
     }
 
-    protected int getColor(int id) {
-        return ContextCompat.getColor(getContext(), id);
+    protected int getColor() {
+        return ContextCompat.getColor(getContext(), R.color.white);
     }
 
     protected Drawable getDrawable(int id) {
@@ -190,12 +190,12 @@ public class GameView extends FrameLayout {
     }
 
     public PieceUI findPiece(int color, String type) {
-        PieceUI found = null;
+        PieceUI found;
         for (int i = 0; i < getChildCount(); i++) {
             View v = getChildAt(i);
             if (v instanceof PieceUI) {
                 found = (PieceUI) v;
-                if (found.piece.color == color && found.piece.type == type) return found;
+                if (found.piece.color == color && found.piece.type.equals(type)) return found;
             }
         }
         return null;
@@ -247,7 +247,7 @@ public class GameView extends FrameLayout {
         for (int p = 0; p < pieces.size(); p++) {
             PieceUI piece = pieces.get(p);
             if (singleline) {
-//				piece.j0 = 22;
+//                piece.j0 = 22;
                 piece.j0 = 22 + singleLineOffset;
                 if (p < 1) {
                     if (piece.piece.type.equals("I5")) piece.i0 = 1;
@@ -256,7 +256,7 @@ public class GameView extends FrameLayout {
                     piece.i0 = pieces.get(p - 1).i0 + pieces.get(p - 1).piece.size + 1;
                 }
             } else {
-//				piece.j0 = 22 + ((p%2) > 0 ? 5 : 0 ) ;
+//                piece.j0 = 22 + ((p % 2) > 0 ? 5 : 0);
                 piece.j0 = 22 + ((p % 2) > 0 ? 5 + secondLineOffset : 0);
 
                 if (p < 2) {
@@ -271,7 +271,7 @@ public class GameView extends FrameLayout {
     }
 
     private List<PieceUI> piecesInStore() {
-        List<PieceUI> list = new ArrayList<PieceUI>();
+        List<PieceUI> list = new ArrayList<>();
         for (int k = 0; k < this.getChildCount(); k++) {
             if (this.getChildAt(k) instanceof PieceUI) {
                 PieceUI piece = (PieceUI) this.getChildAt(k);
@@ -284,27 +284,26 @@ public class GameView extends FrameLayout {
     }
 
     private List<PieceUI> piecesInStore(int color) {
-        List<PieceUI> list = new ArrayList<PieceUI>();
+        List<PieceUI> list = new ArrayList<>();
         for (PieceUI piece : piecesInStore()) {
             if (piece.piece.color == color) list.add(piece);
         }
         return list;
     }
 
-    public boolean replay(List<Move> moves) {
+    public void replay(List<Move> moves) {
         for (Move move : moves) {
             Piece piece = move.piece;
             PieceUI ui = findPiece(piece);
             ui.piece.reset(piece);
             play(move, false);
         }
-        return true;
     }
 
     private class ShowPiecesListener implements OnClickListener {
         private int color;
 
-        protected ShowPiecesListener(int color) {
+        ShowPiecesListener(int color) {
             this.color = color;
         }
 

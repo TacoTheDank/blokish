@@ -28,9 +28,10 @@
         android:gravity="center"
         android:text="@string/if_you_enjoy"
         android:textColor="#FFF"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -39,25 +40,28 @@
 
         <Button
             android:id="@+id/now"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="60dp"
             android:text="@string/now"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/later"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/later"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/never"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="60dp"
             android:text="@string/never"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

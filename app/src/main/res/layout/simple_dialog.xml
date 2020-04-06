@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="#FFF"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

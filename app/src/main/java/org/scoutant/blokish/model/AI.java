@@ -104,7 +104,7 @@ public class AI {
     }
 
     List<Move> thinkUpToNMoves(int color, int level) {
-        List<Move> moves = new ArrayList<Move>();
+        List<Move> moves = new ArrayList<>();
         Board board = game.boards.get(color);
         // Most of time , in the middle of the game, any player has about 10 to 20 seeds.
         int nbSeeds = board.seeds().size();
@@ -120,7 +120,7 @@ public class AI {
             int movesAgainstSeed = 0;
             Log.d(tag, "---- seed : " + seed);
             int maxMovesAgainstSeed = maxMoves[level] / nbSeeds;
-//			Log.d(tag, "considering # of moves : " + maxMovesAgainstSeed );
+//            Log.d(tag, "considering # of moves : " + maxMovesAgainstSeed);
             for (int p = 0; p < board.pieces.size() && movesAgainstSeed < maxMovesAgainstSeed; p++) {
                 Piece piece = board.pieces.get(p);
                 for (int r = 0; r < piece.rotations; r++, piece.rotate(1)) {
@@ -131,7 +131,7 @@ public class AI {
                             if (!board.outside(s, i, j) && game.fits(piece, i, j)) {
                                 Move move = new Move(piece, i, j);
                                 if (!game.valid(move)) {
-                                    Log.e(tag, "Inconsistant ! " + move);
+                                    Log.e(tag, "Inconsistent! " + move);
                                 }
                                 int score = SIZE_WEIGHT * piece.count;
                                 if (board.pieces.size() > board.nbPieces - 5) {
@@ -149,7 +149,7 @@ public class AI {
                                     score += CHAINING_WEIGHT * chainingScore(color, move);
                                 }
                                 move.score = score;
-//								Log.d(tag, ""+move);
+//                                Log.d(tag, "" + move);
                                 if (board.pieces.size() <= board.nbPieces - 4 || piece.count >= 5) {
                                     moves.add(move);
                                 }
@@ -177,7 +177,7 @@ public class AI {
     private int chainingScore(int color, Move move) {
         Board board = game.boards.get(color);
         Piece played = move.piece;
-        List<Piece> pieces = new ArrayList<Piece>();
+        List<Piece> pieces = new ArrayList<>();
         for (Piece piece : board.pieces) {
             if (!piece.equals(played)) {
                 pieces.add(piece.clone());
@@ -206,7 +206,7 @@ public class AI {
                         for (Square s : piece.squares()) {
                             int i = move.i + seed.i - s.i;
                             int j = move.j + seed.j - s.j;
-                            boolean overlaps = overlaps(color, piece, i, j);
+                            boolean overlaps = overlaps(piece, i, j);
                             boolean outside = board.outside(s, i, j);
                             boolean fits = game.fits(piece, i, j);
                             if (!overlaps && !outside && fits) {
@@ -225,7 +225,7 @@ public class AI {
         return score;
     }
 
-    private boolean overlaps(int color, Piece piece, int i, int j) {
+    private boolean overlaps(Piece piece, int i, int j) {
         for (Square s : piece.squares()) {
             int I = i + s.i;
             int J = j + s.j;

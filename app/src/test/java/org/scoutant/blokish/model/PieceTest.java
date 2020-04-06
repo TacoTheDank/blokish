@@ -6,7 +6,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 public class PieceTest {
@@ -16,11 +19,11 @@ public class PieceTest {
     private Piece L4;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         I3 = new Piece(3, "I3", 2, 1).add(0, -1).add(0, 0).add(0, 1);
         L4 = new Piece(3, "L4", 4, 2).add(0, -1).add(0, 0).add(0, 1).add(1, 1);
     }
@@ -50,8 +53,8 @@ public class PieceTest {
 
     @Test
     public void testEquals() {
-        assertTrue(I3 == I3);
-        assertFalse(I3 == L4);
+        assertSame(I3, I3);
+        assertNotSame(I3, L4);
     }
 
     @Test
@@ -75,19 +78,19 @@ public class PieceTest {
     @Test
     public void testSeeds() {
         Log.d(tag, "" + L4.seeds());
-        assertTrue(L4.seeds().size() == 5);
+        assertEquals(5, L4.seeds().size());
     }
 
     @Test
     public void testSquares() {
         Log.d(tag, "" + L4.squares());
-        assertTrue(L4.squares().size() == 4);
+        assertEquals(4, L4.squares().size());
     }
 
     @Test
     public void testSquaresAndEdges() {
         Log.d(tag, "" + L4.squares(0));
-        assertTrue(L4.squares(0).size() == 13);
+        assertEquals(13, L4.squares(0).size());
     }
 
 

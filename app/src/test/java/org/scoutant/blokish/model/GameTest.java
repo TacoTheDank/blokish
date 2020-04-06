@@ -14,11 +14,11 @@ public class GameTest {
     private Piece L4;
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         board = new Game();
         L4 = new Piece(0, 3, "L4", 4, 2).add(0, -1).add(0, 0).add(0, 1).add(1, 1);
     }

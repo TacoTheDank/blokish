@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.Interpolator;
 import android.view.animation.RotateAnimation;
 
 /**
@@ -27,11 +26,7 @@ class BusyIndicator {
         animation = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
         animation.setRepeatCount(Animation.INFINITE);
         final int cycles = 12;
-        animation.setInterpolator(new Interpolator() {
-            public float getInterpolation(float input) {
-                return ((int) (input * cycles)) / (float) cycles;
-            }
-        });
+        animation.setInterpolator(input -> ((int) (input * cycles)) / (float) cycles);
         animation.setDuration(1800);
         animation.setStartTime(RotateAnimation.START_ON_FIRST_FRAME);
         animation.setStartOffset(0);
@@ -39,15 +34,13 @@ class BusyIndicator {
 
     void show() {
         this.visible = true;
-        uiHandler.post(new Runnable() {
-            public void run() {
-                view.setVisibility(View.VISIBLE);
-                if (BusyIndicator.this.visible) {
-//					view.setBackgroundDrawable(drawable);
-                    view.setBackground(drawable);
-                    if (view.getAnimation() == null) {
-                        view.startAnimation(animation);
-                    }
+        uiHandler.post(() -> {
+            view.setVisibility(View.VISIBLE);
+            if (BusyIndicator.this.visible) {
+//                view.setBackgroundDrawable(drawable);
+                view.setBackground(drawable);
+                if (view.getAnimation() == null) {
+                    view.startAnimation(animation);
                 }
             }
         });
@@ -55,12 +48,10 @@ class BusyIndicator {
 
     void hide() {
         this.visible = false;
-        uiHandler.post(new Runnable() {
-            public void run() {
-                view.setVisibility(View.INVISIBLE);
-                if (view.getAnimation() != null) {
-                    view.clearAnimation();
-                }
+        uiHandler.post(() -> {
+            view.setVisibility(View.INVISIBLE);
+            if (view.getAnimation() != null) {
+                view.clearAnimation();
             }
         });
     }
