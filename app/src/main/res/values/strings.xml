@@ -69,7 +69,7 @@
 		\n- 4 players each have 21 pieces: 1 single-square, 1 domino, 2 triominos, 5 tetraminos, and 12 pentaminos.
 		\n- As a player, you have to place as many pieces on the board as possible.
 		\n- For the first piece, you must place a piece so that it touches one of the corners of the board.
-		\n- Next, a piece must be placed so that it touches a corner of one of your own pieces. It may touch several corners, but never your pieces' sides!
+		\n- Next, a piece must be placed so that it touches a corner of one of your own pieces. It may touch several corners, but never your pieces\' sides!
 	</string>
     <string name="rules_text_2">
 		- If you cannot place any more pieces, your game is over.

@@ -6,8 +6,17 @@
 
 Open-source Android implementation of the popular board game Blokus. With very smooth Drag & Drop user interface.
 
-<a href="https://f-droid.org/packages/org.scoutant.blokish" target="_blank">
-<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="100"/></a>
+<a href="https://play.google.com/store/apps/details?id=org.scoutant.blokish">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+    alt="Get it on Google Play"
+    height="80">
+</a>
+<a href="https://f-droid.org/packages/org.scoutant.blokish/">
+    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+    alt="Get it on F-Droid"
+    height="80">
+</a>
+
 
 #### The rules
 Blokus is family game involving four players and a board with 20 x 20 squares. Like chess or checkers, it's a game for which at any time you can see your opponent's pieces.
@@ -37,14 +46,14 @@ You play against the machine. You can configure the level of corresponding Artif
 You can disable AI for a human play only. Refer to Menu > Preferences.
 
 The software has no unobtrusive banner advertising.
-Once installed, you can play off-line.
+Once installed, you can play offline.
 
 #### GPL v3 Licence
 The game is free. And even more : the code is open-source. 
-You can access it at http://github.com/scoutant.
+You can access it at https://github.com/scoutant/blokish.
 You can reuse and adapt it according to GPL v3 license.
 
-You may post issues at http://github.com/scoutant/blokish/issues
+You may post issues at https://github.com/scoutant/blokish/issues
 
 Stephane Coutant, http://scoutant.org
 
@@ -52,16 +61,17 @@ Stephane Coutant, http://scoutant.org
 
 # Changelog
 
-## v3.4, 2020/04 : Android 10 and AndroidX Jetpack libraries refactoring
- * build with Android 10, from nom on : available on Android 7+
+## v3.4, 2020/04 : Android 10 and AndroidX Jetpack libraries refactoring
+ * build with Android 10, from nom on: available on Android 7+
  * refactored Manifest and source dir
  * Github-CI build with tests
 
-## v3.3, 2018/06 : locale nl, Android 8.1
+## v3.3, 2018/06 : locale nl, Android 8.1
  * locale nl, credits to Vistaus
- * now targetting Android 8.1
+ * now targeting Android 8.1
 
-## v3.2, 2018/01 : Added locale pt-rBR, thanks @afmachado
+## v3.2, 2018/01 : locale pt-rBR
+  * locale pt-rBR, thanks @afmachado
 
 ## v3.1, 2017/05 : menu now with drawer, removed multi-player network support with PlayHub
  * build with Sdk Android 7.0
@@ -76,7 +86,7 @@ Stephane Coutant, http://scoutant.org
 ## v2.4, 2015/06 : Move validation possible directly on piece.
 * Smarter move validation : vibration and green color as soon move is valid
 * Validation by double tap on piece
-* sdk Android 5.1
+* Sdk Android 5.1
 
 ## v2.3, 2015/03 : Russian translation
 * added Russian translation, credits to Boris Timofeev.
@@ -103,7 +113,7 @@ Stephane Coutant, http://scoutant.org
 
 ## v1.7, 2012/03 : Swedish locale
 * migrated to Android 2.2 
-* added social feature, powered by Heyzap : you may checkin and if you win game you may post your score...  
+* added social feature, powered by Heyzap : you may check in and if you win game you may post your score...  
 * added local SV_SE
 
 ## v1.6, 2011/12 : Locales fr and es
