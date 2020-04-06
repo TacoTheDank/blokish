@@ -14,26 +14,6 @@ android {
         project.ext.set("archivesBaseName", "blokish-" + defaultConfig.versionName)
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    dependencies {
-        testImplementation 'junit:junit:4.13'
-
-        implementation 'com.google.android.material:material:1.1.0'
-        implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
-        implementation 'androidx.appcompat:appcompat:1.1.0'
-        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-//        implementation 'androidx.preference:preference:1.1.0' // TODO migrate preferences
-
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
     signingConfigs {
         release {
             storeFile file("../scoutant.keystore")
@@ -42,15 +22,35 @@ android {
             keyPassword System.getenv("KEYSTORE")
         }
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        encoding = 'UTF-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     testOptions {
         unitTests.returnDefaultValues = true
     }
+}
 
+dependencies {
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+//    implementation 'androidx.preference:preference:1.1.0' // TODO migrate preferences
+
+    testImplementation 'junit:junit:4.13'
 }
