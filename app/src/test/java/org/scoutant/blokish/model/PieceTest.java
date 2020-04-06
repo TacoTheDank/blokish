@@ -11,9 +11,9 @@ import static org.junit.Assert.assertTrue;
 
 public class PieceTest {
 
-    public static final String tag = "sc";
-    Piece I3;
-    Piece L4;
+    private static final String tag = "sc";
+    private Piece I3;
+    private Piece L4;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {

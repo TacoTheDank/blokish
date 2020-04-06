@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
-public class IconDialog extends Dialog {
+class IconDialog extends Dialog {
     private OnClick listener;
 
-    public IconDialog(final Context context, int title_id) {
+    IconDialog(final Context context, int title_id) {
         super(context);
         setContentView(R.layout.simple_dialog);
         TextView tv = findViewById(R.id.title);
@@ -30,7 +30,7 @@ public class IconDialog extends Dialog {
         });
     }
 
-    public void setListener(final OnClick listener) {
+    void setListener(final OnClick listener) {
         this.listener = listener;
     }
 

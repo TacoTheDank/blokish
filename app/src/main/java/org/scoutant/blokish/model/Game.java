@@ -27,20 +27,20 @@ public class Game {
     //	public String[] colors = { "Red", "Green", "Blue", "Orange" };
     public int[] colors = {R.string.Red, R.string.Green, R.string.Blue, R.string.Orange};
     public List<Move> moves = new ArrayList<Move>();
-    int[][] ab = new int[20][20];
+    private int[][] ab = new int[20][20];
 
     public Game() {
         reset();
     }
 
-    public void reset() {
+    private void reset() {
         boards.clear();
         for (int k = 0; k < 4; k++) {
             boards.add(new Board(k));
         }
     }
 
-    public void historize(Move move) {
+    private void historize(Move move) {
         moves.add(move);
     }
 
@@ -93,7 +93,7 @@ public class Game {
         return fits(piece, i, j) && boards.get(piece.color).onseed(piece, i, j);
     }
 
-    public boolean fits(Piece p, int i, int j) {
+    boolean fits(Piece p, int i, int j) {
         return boards.get(0).fits(0, p, i, j) && boards.get(1).fits(1, p, i, j) && boards.get(2).fits(2, p, i, j) && boards.get(3).fits(3, p, i, j);
     }
 
@@ -146,7 +146,7 @@ public class Game {
         return result;
     }
 
-    public int scoreEnemySeedsIfAdding(int color, Piece piece, int i, int j) {
+    int scoreEnemySeedsIfAdding(int color, Piece piece, int i, int j) {
         int result = 0;
 //		for (int c=0; c<4; c++) {
 //			if (c!=color) {

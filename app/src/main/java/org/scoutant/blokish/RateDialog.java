@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 
-public class RateDialog extends Dialog {
+class RateDialog extends Dialog {
     private final static String APP_PNAME = "org.scoutant.blokish";
     private SharedPreferences.Editor editor;
 
-    public RateDialog(final Context context) {
+    RateDialog(final Context context) {
         super(context);
         editor = context.getSharedPreferences("apprater", 0).edit();
         setContentView(R.layout.rate);

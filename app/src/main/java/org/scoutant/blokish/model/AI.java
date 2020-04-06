@@ -103,7 +103,7 @@ public class AI {
         return move;
     }
 
-    protected List<Move> thinkUpToNMoves(int color, int level) {
+    List<Move> thinkUpToNMoves(int color, int level) {
         List<Move> moves = new ArrayList<Move>();
         Board board = game.boards.get(color);
         // Most of time , in the middle of the game, any player has about 10 to 20 seeds.
@@ -174,7 +174,7 @@ public class AI {
      *
      * @return true if we may place a piece on newly created seeds.
      */
-    protected int chainingScore(int color, Move move) {
+    private int chainingScore(int color, Move move) {
         Board board = game.boards.get(color);
         Piece played = move.piece;
         List<Piece> pieces = new ArrayList<Piece>();
@@ -225,7 +225,7 @@ public class AI {
         return score;
     }
 
-    public boolean overlaps(int color, Piece piece, int i, int j) {
+    private boolean overlaps(int color, Piece piece, int i, int j) {
         for (Square s : piece.squares()) {
             int I = i + s.i;
             int J = j + s.j;

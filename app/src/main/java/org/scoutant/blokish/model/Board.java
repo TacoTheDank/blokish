@@ -49,13 +49,13 @@ public class Board {
     public int color;
     public int size = 20;
     public List<Piece> pieces = new ArrayList<Piece>();
-    public int nbPieces;
     public int score;
     public boolean over = false;
+    int nbPieces;
     int[][] ij = new int[20][20];
-    int[][] ab = new int[20][20];
+    private int[][] ab = new int[20][20];
 
-    public Board(int color) {
+    Board(int color) {
         this.color = color;
         if (color == 0) ij[0][0] = 1;
         if (color == 1) ij[size - 1][0] = 1;
@@ -127,7 +127,7 @@ public class Board {
     /**
      * @return # of seeds if actually adding @param piece at @param i, @param j.
      */
-    public int scoreSeedsIfAdding(Piece piece, int i, int j) {
+    int scoreSeedsIfAdding(Piece piece, int i, int j) {
         int result = 0;
         for (int b = 0; b < 20; b++) for (int a = 0; a < 20; a++) ab[a][b] = ij[a][b];
         for (Square s : piece.squares(this.color)) {
@@ -147,11 +147,11 @@ public class Board {
     }
 
 
-    public boolean outside(Square s, int i, int j) {
+    boolean outside(Square s, int i, int j) {
         return (s.i + i < 0 || s.i + i >= size || s.j + j < 0 || s.j + j >= size);
     }
 
-    public boolean overlaps(int color, Piece piece, int i, int j) {
+    boolean overlaps(int color, Piece piece, int i, int j) {
         for (Square s : piece.squares()) {
             if (outside(s, i, j)) return true;
             if (ij[i + s.i][j + s.j] > (piece.color == color ? 1 : 2)) return true;
@@ -159,12 +159,12 @@ public class Board {
         return false;
     }
 
-    public boolean fits(int color, Piece piece, int i, int j) {
+    boolean fits(int color, Piece piece, int i, int j) {
         if (i < -1 || i > size || j < -1 || j > size) return false;
         return !overlaps(color, piece, i, j);
     }
 
-    public boolean onseed(Piece piece, int i, int j) {
+    boolean onseed(Piece piece, int i, int j) {
         for (Square s : piece.squares()) {
             if (!outside(s, i, j) && ij[i + s.i][j + s.j] == 1) return true;
         }
@@ -175,7 +175,7 @@ public class Board {
         return toString(size);
     }
 
-    public String toString(int jmax) {
+    String toString(int jmax) {
         String str = "";
         for (int j = 0; j < jmax; j++) {
             for (int i = 0; i < size; i++) {

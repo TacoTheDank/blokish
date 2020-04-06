@@ -13,16 +13,16 @@ import static org.junit.Assert.assertTrue;
 
 public class AITest {
 
-    public static final String tag = "ai";
-    int color = 0;
-    protected Piece L4 = new Piece(color, 3, "L4", 4, 2).add(0, -1).add(0, 0).add(0, 1).add(1, 1);
-    protected Piece P5 = new Piece(color, 3, "P5", 4, 2).add(0, -1).add(0, 0).add(0, 1).add(1, -1).add(1, 0);
-    protected Piece I3 = new Piece(color, 3, "I3", 2, 1).add(0, -1).add(0, 0).add(0, 1);
-    AI ai;
-    Game game;
-    Board board;
-    List<Piece> pieces;
-    boolean valid = false;
+    private static final String tag = "ai";
+    private int color = 0;
+    private Piece L4 = new Piece(color, 3, "L4", 4, 2).add(0, -1).add(0, 0).add(0, 1).add(1, 1);
+    private Piece P5 = new Piece(color, 3, "P5", 4, 2).add(0, -1).add(0, 0).add(0, 1).add(1, -1).add(1, 0);
+    private Piece I3 = new Piece(color, 3, "I3", 2, 1).add(0, -1).add(0, 0).add(0, 1);
+    private AI ai;
+    private Game game;
+    private Board board;
+    private List<Piece> pieces;
+    private boolean valid = false;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {

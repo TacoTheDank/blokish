@@ -19,7 +19,7 @@ public class Move implements Comparable<Move> {
     public int i;
     public int j;
     public int score;
-    public Piece ghost;
+    Piece ghost;
 
     public Move(Piece piece, int i, int j) {
         this.piece = piece;
@@ -36,7 +36,7 @@ public class Move implements Comparable<Move> {
     /**
      * @return a represention of the piece, like this sample : 18:16:2:I3:0,-1:0,0:0,1
      */
-    public static String serialize(Move move) {
+    static String serialize(Move move) {
         return String.format("%s:%s:%s", move.i, move.j, Piece.serialize(move.piece));
     }
 

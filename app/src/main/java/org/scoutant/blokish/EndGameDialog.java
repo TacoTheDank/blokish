@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
-public class EndGameDialog extends Dialog {
-    public EndGameDialog(final Context context, boolean redwins, String message, final int level, final int score) {
+class EndGameDialog extends Dialog {
+    EndGameDialog(final Context context, boolean redwins, String message, final int level, final int score) {
         super(context);
         setContentView(R.layout.endgame);
         // Cf layout issue http://groups.google.com/group/android-developers/browse_thread/thread/f0bb813f643604ec?pli=1

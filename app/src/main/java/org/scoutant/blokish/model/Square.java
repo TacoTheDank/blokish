@@ -17,14 +17,14 @@ public class Square implements Comparable<Square> {
 
     public int i;
     public int j;
-    public int value;
+    int value;
 
     public Square(int i, int j) {
         this.i = i;
         this.j = j;
     }
 
-    public Square(int i, int j, int value) {
+    Square(int i, int j, int value) {
         this(i, j);
         this.value = value;
     }

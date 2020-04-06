@@ -10,8 +10,8 @@ import static org.junit.Assert.assertTrue;
 public class GameTest {
 
     public static final String tag = "sc";
-    Game board;
-    Piece L4;
+    private Game board;
+    private Piece L4;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {

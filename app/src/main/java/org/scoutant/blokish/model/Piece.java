@@ -21,9 +21,9 @@ public class Piece {
     public String type;
     public int size;
     public int color = 0;
-    public int rotations = 4;
-    public int flips = 2;
     public int count = 0;
+    int rotations = 4;
+    int flips = 2;
     private int[][] a;
     private int[][] b;
     private boolean actual = true;
@@ -50,7 +50,7 @@ public class Piece {
     /**
      * @return a represention of the piece, like this sample : 2:I3:0,-1:0,0:0,1
      */
-    public static String serialize(Piece piece) {
+    static String serialize(Piece piece) {
         String msg = "" + piece.color;
         msg += ":" + piece.type;
         for (Square s : piece.squares()) {
@@ -116,12 +116,12 @@ public class Piece {
         w()[x + h][y + h] = value;
     }
 
-    public int getValue(int x, int y) {
+    private int getValue(int x, int y) {
         if (x < -h || x >= -h + size || y < -h || y >= -h + size) return 0;
         return get(x, y);
     }
 
-    public boolean isValue(int x, int y) {
+    private boolean isValue(int x, int y) {
         return getValue(x, y) > 0;
 
     }
@@ -170,12 +170,12 @@ public class Piece {
 
     }
 
-    public boolean touches(int x, int y) {
+    boolean touches(int x, int y) {
         if (isValue(x, y)) return false;
         return (isValue(x - 1, y) || isValue(x, y - 1) || isValue(x + 1, y) || isValue(x, y + 1));
     }
 
-    public boolean crosses(int x, int y) {
+    boolean crosses(int x, int y) {
         if (isValue(x, y)) return false;
         if (touches(x, y)) return false;
         return (isValue(x - 1, y - 1) || isValue(x + 1, y - 1) || isValue(x + 1, y + 1) || isValue(x - 1, y + 1));
@@ -215,7 +215,7 @@ public class Piece {
         return list;
     }
 
-    public List<Square> squares(int color) {
+    List<Square> squares(int color) {
         List<Square> list = new ArrayList<Square>();
         if (color != this.color) {
             return squares();

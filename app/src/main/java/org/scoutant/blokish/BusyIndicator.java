@@ -12,14 +12,14 @@ import android.view.animation.RotateAnimation;
  * An adaptation from OsmAnd project, credits to http://wiki.openstreetmap.org/wiki/OsmAnd, license GPL.
  * And I do publish present adaptation with same license, at http://github.com/scoutant.
  */
-public class BusyIndicator {
+class BusyIndicator {
     private View view;
     private Handler uiHandler;
     private boolean visible = false;
     private Drawable drawable;
     private RotateAnimation animation;
 
-    public BusyIndicator(Context ctx, View view) {
+    BusyIndicator(Context ctx, View view) {
         this.view = view;
         view.setVisibility(View.INVISIBLE);
         uiHandler = new Handler();
@@ -37,7 +37,7 @@ public class BusyIndicator {
         animation.setStartOffset(0);
     }
 
-    public void show() {
+    void show() {
         this.visible = true;
         uiHandler.post(new Runnable() {
             public void run() {
@@ -53,7 +53,7 @@ public class BusyIndicator {
         });
     }
 
-    public void hide() {
+    void hide() {
         this.visible = false;
         uiHandler.post(new Runnable() {
             public void run() {

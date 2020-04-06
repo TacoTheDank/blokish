@@ -3,11 +3,11 @@ package org.scoutant.blokish;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class AppRater {
+class AppRater {
     private final static int DAYS_UNTIL_PROMPT = 3;
     private final static int LAUNCHES_UNTIL_PROMPT = 8;
 
-    public static void app_launched(Context context) {
+    static void app_launched(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("apprater", 0);
         if (prefs.getBoolean("dontshowagain", false)) {
             return;
