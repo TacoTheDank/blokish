@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- FRANCAIS -->
+    <!-- FRANCAIS -->
 
-	<string name="yes">Oui</string>
-	<string name="no">Non</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 
-	<string name="help">Aide</string>
-	<string name="preferences">Paramètres</string>
-	<string name="online">Jouer en ligne</string>
+    <string name="help">Aide</string>
+    <string name="preferences">Paramètres</string>
+    <string name="online">Jouer en ligne</string>
 
-	<string name="back">Retour</string>
-	<string name="cancel">Annuler</string>
+    <string name="back">Retour</string>
+    <string name="cancel">Annuler</string>
 
-	<string name="newnew">Nouveau</string>
-	<string name="delete">Supprimer</string>
-	<string name="undo">Annuler</string>
+    <string name="newnew">Nouveau</string>
+    <string name="delete">Supprimer</string>
+    <string name="undo">Annuler</string>
 
-	<string name="twice_to_exit">2 fois pour quitter</string>
-	<!-- app -->
-	
-	<string name="flip">Retourner piece</string>
-	<string name="i_pass">Je passe mon tour</string>
-	
-	<string name="quit">Quitter le  jeu?</string>
-	<string name="social">Communauté</string>
-		
-	<string name="new_game">Nouvelle partie</string>
-	<string name="red_ko">Les rouges n\'ont plus de coup</string>
-	<string name="congratulations">Félicitations, vous avez gagné, avec un score de : </string>
-	<string name="try_next">Essayez le niveau suivant!</string>
-	<string name="wins_with_score">gagnent avec le score</string>
-	
-	<string name="Red">les Rouges</string>
-	<string name="Green">Les Verts</string>
-	<string name="Blue">Les Bleus</string>
-	<string name="Orange">Les Oranges</string>
-	
-	<!-- rate form -->
-	<string name="if_you_enjoy">Pour améliorer le jeu, un instant pour vote, voire un commentaire, sur le PlayStore?</string>
-	
-	<string name="now">Oui</string>
-	<string name="later">Plus tard</string>
-	<string name="never">Non</string>
+    <string name="twice_to_exit">2 fois pour quitter</string>
+    <!-- app -->
 
-	<!-- 
-	<string name="rate">Evaluer Blokish?</string>
-	<string name="remind_me">Me rappeler plus tard</string>
-	<string name="no_thansk">Non merci!</string>
-	 -->
+    <string name="flip">Retourner piece</string>
+    <string name="i_pass">Je passe mon tour</string>
+
+    <string name="quit">Quitter le  jeu?</string>
+    <string name="social">Communauté</string>
+
+    <string name="new_game">Nouvelle partie</string>
+    <string name="red_ko">Les rouges n\'ont plus de coup</string>
+    <string name="congratulations">Félicitations, vous avez gagné, avec un score de : </string>
+    <string name="try_next">Essayez le niveau suivant!</string>
+    <string name="wins_with_score">gagnent avec le score</string>
+
+    <string name="Red">les Rouges</string>
+    <string name="Green">Les Verts</string>
+    <string name="Blue">Les Bleus</string>
+    <string name="Orange">Les Oranges</string>
+
+    <!-- rate form -->
+    <string name="if_you_enjoy">Pour améliorer le jeu, un instant pour vote, voire un commentaire, sur le PlayStore?</string>
+
+    <string name="now">Oui</string>
+    <string name="later">Plus tard</string>
+    <string name="never">Non</string>
+
+    <!--
+    <string name="rate">Evaluer Blokish?</string>
+    <string name="remind_me">Me rappeler plus tard</string>
+    <string name="no_thansk">Non merci!</string>
+     -->
 
 
-	<!-- preferences -->
-	<string name="displaySeeds_title">Afficher les points d\'encrage</string>
-	<string name="displaySeeds_description">Afficher un point là où une pièce peut être positionnée</string>
+    <!-- preferences -->
+    <string name="displaySeeds_title">Afficher les points d\'encrage</string>
+    <string name="displaySeeds_description">Afficher un point là où une pièce peut être positionnée</string>
 
-	<string name="ai_title">Intelligence Artificielle</string>
-	<string name="ai_description">La machine joue les Verts, les Bleus et les Oranges</string>
+    <string name="ai_title">Intelligence Artificielle</string>
+    <string name="ai_description">La machine joue les Verts, les Bleus et les Oranges</string>
 
-	<string name="aiLevel_title">Niveau</string>
-	<string name="aiLevel_dialog">Choisir le niveau</string>
+    <string name="aiLevel_title">Niveau</string>
+    <string name="aiLevel_dialog">Choisir le niveau</string>
 
-	<string name="review">Mon avis</string>
+    <string name="review">Mon avis</string>
 
 
 </resources>

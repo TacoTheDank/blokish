@@ -3,7 +3,7 @@
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>
- 
+
     <string name="help">Помощь</string>
     <string name="preferences">Настройки</string>
     <string name="online">Играть онлайн</string>
@@ -15,7 +15,7 @@
     <string name="delete">Удалить</string>
     <string name="undo">Отменить</string>
 
-  <!-- app -->
+    <!-- app -->
 
     <string name="flip">Перевернуть фигуру</string>
     <string name="i_pass">Я пропускаю ход</string>
@@ -34,7 +34,7 @@
     <string name="Blue">Синий игрок</string>
     <string name="Orange">Оранжевый игрок</string>
 
-  <!-- rate form -->
+    <!-- rate form -->
 
     <string name="if_you_enjoy">Если вам понравилась игра Blokish, не могли бы вы проголосовать за нее?</string>
     <string name="now">Да</string>

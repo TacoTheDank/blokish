@@ -1,13 +1,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<CheckBoxPreference 
-		android:key="displaySeeds" android:title="Afficher les points d'encrage" android:summary="Afficher un point là où une pièce peut être positionnée" 
-		android:defaultValue="true" />
-	<CheckBoxPreference android:key="ai" android:title="Intelligence Artificielle" android:summary="La machine joue les Verts, les Bleus et les Oranges" android:defaultValue="true" />
-	<ListPreference 
-		android:key="aiLevel" android:title="Niveau"
-		android:summary="%s"
-		android:entries="@array/aiLevelNames" android:entryValues="@array/aiLevelValues"
-		android:dialogTitle="Choisir le niveau" android:defaultValue="0" 
-		android:persistent="true"
-		/>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="displaySeeds"
+        android:summary="Afficher un point là où une pièce peut être positionnée"
+        android:title="Afficher les points d'encrage" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="ai"
+        android:summary="La machine joue les Verts, les Bleus et les Oranges"
+        android:title="Intelligence Artificielle" />
+    <ListPreference
+        android:defaultValue="0"
+        android:dialogTitle="Choisir le niveau"
+        android:entries="@array/aiLevelNames"
+        android:entryValues="@array/aiLevelValues"
+        android:key="aiLevel"
+        android:persistent="true"
+        android:summary="%s"
+        android:title="Niveau" />
 </PreferenceScreen>

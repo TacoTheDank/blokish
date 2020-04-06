@@ -51,6 +51,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
 //    implementation 'androidx.preference:preference:1.1.0' // TODO migrate preferences
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
     testImplementation 'junit:junit:4.13'
 }

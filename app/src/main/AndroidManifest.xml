@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	package="org.scoutant.blokish"
-	>
-	<uses-permission android:name="android.permission.VIBRATE"/>
-		
-	<uses-feature android:name="android.hardware.screen.portrait" android:required="true"/> 
-	<uses-feature android:name="android.hardware.touchscreen" android:required="true"/>
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.scoutant.blokish">
 
-	<supports-screens android:smallScreens="false" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" />	
-	
-	<application android:icon="@drawable/blokish2" android:label="Blokish"
-				 android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-	    android:allowBackup="true" >
-		<activity android:name=".UI"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-			android:exported="true"
-		    android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		<activity android:name=".Settings" android:label="@string/preferences" 
-		    android:screenOrientation="portrait" 
-		    android:parentActivityName=".UI"
-				  android:theme="@style/Theme.Holo.Calendar"
-			tools:ignore="LockedOrientationActivity" />
-		<activity android:name=".Help" android:label="Help" 
-		    android:screenOrientation="portrait" 
-		    android:parentActivityName=".UI"
-			tools:ignore="LockedOrientationActivity" />
-	</application>
-</manifest>
-<!-- TODO issue #4 : when same score : last player wins : adapt the message. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="true" />
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="false"
+        android:xlargeScreens="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/blokish2"
+        android:label="Blokish"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".UI"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/preferences"
+            android:parentActivityName=".UI"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Holo.Calendar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".Help"
+            android:label="Help"
+            android:parentActivityName=".UI"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+    </application>
+</manifest><!-- TODO issue #4 : when same score : last player wins : adapt the message. -->

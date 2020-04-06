@@ -1,13 +1,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<CheckBoxPreference 
-		android:key="displaySeeds" android:title="@string/displaySeeds_title" android:summary="@string/displaySeeds_description"
-		android:defaultValue="true" />
-	<CheckBoxPreference android:key="ai" android:title="@string/ai_title" android:summary="@string/ai_description" android:defaultValue="true" />
-	<ListPreference 
-		android:key="aiLevel" android:title="@string/aiLevel_title"
-		android:summary="%s"
-		android:entries="@array/aiLevelNames" android:entryValues="@array/aiLevelValues"
-		android:dialogTitle="@string/aiLevel_dialog" android:defaultValue="0"
-		android:persistent="true"
-		/>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="displaySeeds"
+        android:summary="@string/displaySeeds_description"
+        android:title="@string/displaySeeds_title" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="ai"
+        android:summary="@string/ai_description"
+        android:title="@string/ai_title" />
+    <ListPreference
+        android:defaultValue="0"
+        android:dialogTitle="@string/aiLevel_dialog"
+        android:entries="@array/aiLevelNames"
+        android:entryValues="@array/aiLevelValues"
+        android:key="aiLevel"
+        android:persistent="true"
+        android:summary="%s"
+        android:title="@string/aiLevel_title" />
 </PreferenceScreen>

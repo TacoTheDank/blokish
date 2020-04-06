@@ -8,8 +8,8 @@
     <color name="dark">#999999</color>
 
 
-        <color name="gate_primary">#CDDC39</color>
-        <color name="gate_primary_dark">#AFB42B</color>
-        <color name="gate_accent">#CDDC39</color>
+    <color name="gate_primary">#CDDC39</color>
+    <color name="gate_primary_dark">#AFB42B</color>
+    <color name="gate_accent">#CDDC39</color>
 
 </resources>

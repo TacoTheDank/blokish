@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string-array name="aiLevelNames">
-    <item>nivå 1</item>
-    <item>nivå 2</item>
-    <item>nivå 3</item>
-    <item>nivå 4</item>
-  </string-array>
+    <string-array name="aiLevelNames">
+        <item>nivå 1</item>
+        <item>nivå 2</item>
+        <item>nivå 3</item>
+        <item>nivå 4</item>
+    </string-array>
 </resources>
-  

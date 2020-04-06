@@ -1,14 +1,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<!--  ES -->
-	<CheckBoxPreference 
-		android:key="displaySeeds" android:title="Mostrar puntos claves" android:summary="Mostar un punto donde puedo colocar una pieza" 
-		android:defaultValue="true" />
-	<CheckBoxPreference android:key="ai" android:title="Inteligencia artificial" android:summary="La machina juega para los Verdes, Azules y Naranjos" android:defaultValue="true" />
-	<ListPreference 
-		android:key="aiLevel" android:title="Nivél de juego"
-		android:summary="%s"
-		android:entries="@array/aiLevelNames" android:entryValues="@array/aiLevelValues" 
-		android:dialogTitle="Elija un nivel " android:defaultValue="0" 
-		android:persistent="true"
-		/>
+    <!--  ES -->
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="displaySeeds"
+        android:summary="Mostar un punto donde puedo colocar una pieza"
+        android:title="Mostrar puntos claves" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="ai"
+        android:summary="La machina juega para los Verdes, Azules y Naranjos"
+        android:title="Inteligencia artificial" />
+    <ListPreference
+        android:defaultValue="0"
+        android:dialogTitle="Elija un nivel "
+        android:entries="@array/aiLevelNames"
+        android:entryValues="@array/aiLevelValues"
+        android:key="aiLevel"
+        android:persistent="true"
+        android:summary="%s"
+        android:title="Nivél de juego" />
 </PreferenceScreen>
